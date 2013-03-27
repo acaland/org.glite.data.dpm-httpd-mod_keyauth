@@ -1,0 +1,68 @@
+*** Release glite-data-dpm-httpd-mod_keyauth_R_1_2_1_1 2009-03-08
+
+
+2009-03-08 22:51  szamsu <akos.frohner@cern.ch>
+
+	* Makefile.am, VERSION, configure.in:
+
+	Making use of apr-0 or apr-1.
+
+2008-10-21 09:35  szamsu <akos.frohner@cern.ch>
+
+	* project/e-c_org.glite.data.dpm-httpd-mod_keyauth.ini:
+
+	ini typo
+
+2008-10-20 14:55  szamsu <akos.frohner@cern.ch>
+
+	* ChangeLog, RELEASE-NOTES, VERSION:
+
+	release candidate: glite-data-dpm-httpd-mod_keyauth_R_1_2_0_3
+
+2008-10-20 14:55  szamsu <akos.frohner@cern.ch>
+
+	* get-platform-os:
+
+	Fixes #42623: DM custom packager creates rpms with invalid name
+
+2007-10-15 13:40  szamsu <akos.frohner@cern.ch>
+
+	* ChangeLog, RELEASE-NOTES, VERSION:
+
+	release candidate: glite-data-dpm-httpd-mod_keyauth_R_1_2_0_2
+
+2007-10-15 13:37  szamsu <akos.frohner@cern.ch>
+
+	* Makefile.rpm, configure.in, get-platform-os,
+	  mod_keyauth.template.spec,
+	  project/e-c_org.glite.data.dpm-httpd-mod_keyauth.ini:
+
+	apache modules are in /usr/lib(64)/httpd/modules
+
+2007-09-27 09:32  szamsu <akos.frohner@cern.ch>
+
+	* configure.in:
+
+	lib64 fixes
+
+2007-09-25 23:25  szamsu <akos.frohner@cern.ch>
+
+	* VERSION, project/e-c_org.glite.data.dpm-httpd-mod_keyauth.ini,
+	  project/e-m_org.glite.data.dpm-httpd-mod_keyauth.ini:
+
+	ETICSification
+
+2007-08-29 14:09  apeters <andreas.joachim.peters@cern.ch>
+
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile.am, NEWS, README,
+	  configure.in, mod_keyauth.c:
+
+	- initial import
+
+2007-08-29 14:09  apeters <andreas.joachim.peters@cern.ch>
+
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile.am, NEWS, README,
+	  configure.in, mod_keyauth.c:
+
+	Initial revision
+

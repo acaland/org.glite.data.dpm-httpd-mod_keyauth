@@ -1,0 +1,17 @@
+;
+; INI Template file for the object "Component" called "org.glite.data.dpm-httpd-mod_keyauth"
+;
+
+[Component-org.glite.data.dpm-httpd-mod_keyauth]
+vendor = gLite
+description = mod_keyauth
+repository = http://eticssoft.web.cern.ch/eticssoft/repository/
+packageName = mod_keyauth
+vcsroot = :pserver:anonymous@glite.cvs.cern.ch:/cvs/glite
+licenceType = GPL
+download = None
+homepage = None
+
+[Parent]
+Subsystem = org.glite.data
+

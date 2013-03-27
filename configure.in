@@ -1,0 +1,75 @@
+# Required initializer
+AC_INIT
+# Automake initialization
+AM_INIT_AUTOMAKE(mod_keyauth, 1.2.1)
+
+# Add a test for a compiler.
+AC_PROG_CC
+AM_PROG_LIBTOOL
+
+# Define a macro that is used to parse a --with-apache parameter
+# The macro is named "APACHE_DIR"
+AC_DEFUN([APACHE_DIR],[
+  
+	AC_ARG_WITH(
+		apache,
+			[  --with-apache[=DIR]     Apache server directory], 
+			   ,
+				[with_apache="/usr"]
+				)
+
+				AC_MSG_CHECKING(for Apache directory)
+
+				if test "$with_apache" = "no"; then
+				   AC_MSG_ERROR( You need to specify the apache directory using --with-apache)
+				   else
+					# make sure that a well known include file exists
+					  if test -e $with_apache/include/httpd/httpd.h; then
+						  apache_dir=$with_apache	   
+						AC_MSG_RESULT(APACHE found!)
+					   else
+					   	AC_MSG_ERROR( $with_apache not found.  Check the value you specified with --with-apache)
+  				           fi
+  				fi
+
+				AC_SUBST(apache_dir)
+
+				apache_ldflags="-L${apache_dir}/lib"
+				if test "x$host_cpu" = "xx86_64"; then
+					apache_ldflags="-L${apache_dir}/lib64"
+				fi
+
+				# figuring out the location of the APR directory
+				if test -d ${apache_dir}/include/apr-0; then
+					apache_includes="-I${apache_dir}/include/httpd -I${apache_dir}/include/apr-0"
+                    apache_cppflags=`${apache_dir}/bin/apr-config --cppflags`
+                    apache_libs=`${apache_dir}/bin/apr-config --link-ld`
+                    apache_libs="${apache_libs} "`${apache_dir}/bin/apu-config --link-ld`
+				elif test -d ${apache_dir}/include/apr-1; then
+					apache_includes="-I${apache_dir}/include/httpd -I${apache_dir}/include/apr-1"
+                    apache_cppflags=`${apache_dir}/bin/apr-1-config --cppflags`
+                    apache_libs=`${apache_dir}/bin/apr-1-config --link-ld`
+                    apache_libs="${apache_libs} "`${apache_dir}/bin/apu-1-config --link-ld`
+				else
+					AC_MSG_ERROR([apr include directory was not found])
+				fi
+
+				AC_SUBST(apache_ldflags)
+				AC_SUBST(apache_libs)
+                AC_SUBST(apache_cppflags)
+				AC_SUBST(apache_includes)
+
+
+])
+
+# Now call the APACHE_DIR macro that was just specified
+APACHE_DIR
+
+if test "x$host_cpu" = "xx86_64"; then
+	AC_SUBST([libdir], ['${exec_prefix}/lib64/httpd/modules'])
+else
+	AC_SUBST([libdir], ['${exec_prefix}/lib/httpd/modules'])
+fi
+
+# Write config.status and the Makefile
+AC_OUTPUT(Makefile)
